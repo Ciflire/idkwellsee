@@ -15,15 +15,17 @@
     in
     {
       devShells.${system}.default =
-        pkgs.mkShell.override { stdenv = pkgs.gccStdenv; } # for C dev
+        pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } # for C dev
           {
             packages = with pkgs; [
-              rocmPackages.llvm.clang-tools-extra
+              clang-tools
               libgcc
               cmake
               imgui
               SDL2
               libGLU
+              libcxx
+              cmake-language-server
             ];
             shellHook = "";
           };
